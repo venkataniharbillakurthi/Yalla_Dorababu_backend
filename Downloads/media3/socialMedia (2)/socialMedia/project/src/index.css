@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Platform Card Animations */
+.platform-card {
+  @apply transition-all duration-300 ease-out transform hover:-translate-y-1;
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  @apply bg-gradient-to-r from-blue-500 to-purple-600;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.platform-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* Animation for the progress bar */
+.progress-gradient {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  background-size: 200% 100%;
+  animation: gradientBG 3s ease infinite;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* Animation for the connection status */
+.connection-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Animation for the filter buttons */
+.filter-btn {
+  @apply transition-all duration-200 ease-in-out transform hover:scale-105;
+}
+
+/* Animation for the search input */
+.search-input {
+  @apply transition-all duration-300 ease-out;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.search-input:focus {
+  @apply shadow-md;
+  transform: translateY(-1px);
+}

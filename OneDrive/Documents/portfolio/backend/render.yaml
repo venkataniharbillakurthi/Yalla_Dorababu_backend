@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: your-portfolio-backend
+    env: java
+    buildCommand: mvn clean install -DskipTests
+    startCommand: java -jar target/demo-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-d3aclladbo4c738nf83g-a.oregon-postgres.render.com/portfolio_3bvl?sslmode=require
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: 83nZ0hLPhy5CTcOh15JqDxKwTLOEthtL
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+    plan: free
