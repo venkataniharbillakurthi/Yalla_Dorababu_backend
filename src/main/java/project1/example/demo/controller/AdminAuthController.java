@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/admin/auth")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "http://88.222.213.145"})
 public class AdminAuthController {
     
     @Autowired
@@ -89,6 +89,12 @@ public class AdminAuthController {
     
     @PostMapping("/register")
     public ResponseEntity<?> registerAdmin(@RequestBody LoginRequest request) {
-        return ResponseEntity.status(403).body(new AuthResponse(null, null, null, "Admin registration is disabled."));
+        try {
+            // Temporary endpoint to create admin user - remove in production
+            AdminUser adminUser = adminUserService.createAdminUser(request.getUsername(), request.getPassword());
+            return ResponseEntity.ok(new AuthResponse(null, adminUser.getUsername(), adminUser.getRole(), "Admin user created successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(new AuthResponse(null, null, null, "Error creating admin user: " + e.getMessage()));
+        }
     }
 } 
