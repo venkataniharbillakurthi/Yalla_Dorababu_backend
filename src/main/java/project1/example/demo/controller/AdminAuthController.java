@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/admin/auth")
-@CrossOrigin(origins = {"http://localhost:5173", "http://88.222.213.145"})
+@CrossOrigin(origins = {"http://localhost:5173", "http://88.222.213.145", "https://yalladorababu.in/"})
 public class AdminAuthController {
     
     @Autowired
